@@ -13,8 +13,26 @@ class DeliveryController {
 
             return res.status(200).json(deliveries);
         } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: 'Erro interno do servidor' });
+            console.log(error)
+            return res.status(400).json({
+                errors: e.errors.map(err => err.message)
+            })
+        }
+    }
+
+    async store(req, res) {
+        try {
+            await Delivery.create(req.body)
+
+            res.status(200).json({
+                "description": "Pedido cadastrado com sucesso!",
+                "status": "success"
+            })
+        } catch (error) {
+            console.log(error)
+            return res.status(400).json({
+                errors: e.errors.map(err => err.message)
+            })
         }
     }
 }
