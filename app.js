@@ -3,7 +3,6 @@ import cors from 'cors'
 
 import './src/database'
 
-import homeRoutes from './src/router/homeRoutes.js'
 import deliveryRoutes from './src/router/deliveryRoutes.js'
 
 const whiteList = [
@@ -35,7 +34,6 @@ class App {
     }
 
     routes() {
-        this.app.use('/', homeRoutes)
         this.app.use('/entregas/', deliveryRoutes)
     }
 }
